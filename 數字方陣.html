@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" contect="width=device-width,initial-scale=1.0" />
+    <title>陣列魔法</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 320px;
+            border: 2px solid #666; /* 更深的色調 */
+            margin: 20px auto;
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #666; /* 更深的色調 */
+        }
+
+        th {
+            background-color: #555; /* 更深的色調 */
+            color: #fff;
+        }
+
+        .input-section {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .input-label {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        .input-field {
+            padding: 8px;
+            font-size: 18px;
+        }
+
+        .input-field[type="password"] {
+            letter-spacing: 4px; /* 設定密碼輸入框的字距 */
+        }
+
+        .input-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #5d5cff; /* 更魔幻的按鈕顏色 */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .input-button:hover {
+            background-color: #4a4adf; /* 更魔幻的按鈕懸停顏色 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>魔法方陣</h1>
+	<br/>
+	<h3>歡迎來到魔法世界,此入口為魔法方陣之門<br/>請輸入魔法世界的密碼,以進入魔法方陣的世界!!!
+	<br/>
+    </header>
+	<br/>
+	<br/>
+    <div class="input-section">
+        <div class="input-group">
+            <label for="numberInput" class="input-label">輸入密碼:</label>
+            <input type="password" id="numberInput" min="1" max="99" class="input-field" />
+        </div>
+        <button onclick="generateMagicSquare()" class="input-button">進入魔法世界</button>
+    </div>
+    <table id="resultTable">
+        <!-- 初始時表格是空的 -->
+    </table>
+
+    <script>
+        function generateMagicSquare() {
+            var inputNumber = document.getElementById('numberInput').value;
+            var firstTwoDigits = parseInt(inputNumber.slice(0, 2));
+            var magicSquare = [
+                [8, 11, firstTwoDigits - 20, 1],
+                [firstTwoDigits - 21, 2, 7, 12],
+                [3, firstTwoDigits - 18, 9, 6],
+                [10, 5, 4, firstTwoDigits - 19]
+            ];
+
+            var tableHTML = '';
+            for (var i = 0; i < 4; i++) {
+                tableHTML += '<tr>';
+                for (var j = 0; j < 4; j++) {
+                    tableHTML += '<td>' + magicSquare[i][j] + '</td>';
+                }
+                tableHTML += '</tr>';
+            }
+            document.getElementById('resultTable').innerHTML = tableHTML;
+            // 隱藏輸入框、按鈕和標題上方的提示文字
+            document.querySelector('.input-section').style.display = 'none';
+            document.querySelector('h1').style.marginTop = '20px';
+        }
+    </script>
+</body>
+</html>
